@@ -23,15 +23,10 @@ exports.create = (req, res) => {
 exports.viewSingle = (req, res) => {
     Post.findSingleById(req.params.id, req.visitorId)
         .then((post) => {
-            try{
-                res.render('single-post-screen', { post , title: post.title})
-            } catch (e){
-                res.send("Something went wrong:" + e)
-            }
-            
+            res.render('single-post-screen', { post , title: post.title})
         })
         .catch((e) => {
-            res.json(e)
+            res.render('404')
         })
 }
 
