@@ -23,7 +23,12 @@ exports.create = (req, res) => {
 exports.viewSingle = (req, res) => {
     Post.findSingleById(req.params.id, req.visitorId)
         .then((post) => {
-            res.render('single-post-screen', { post , title: post.title})
+            try{
+                res.render('single-post-screen', { post , title: post.title})
+            } catch (e){
+                res.send(e)
+            }
+            
         })
         .catch((e) => {
             res.json(e)
