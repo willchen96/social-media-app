@@ -58,7 +58,7 @@ app.use(async (err, req, res, next) => {
       await req.session.save()
       res.redirect("/")
     } else {
-      res.send("Something went wrong:")
+      res.send("Something went wrong:" + err)
     }
   }
   next()
