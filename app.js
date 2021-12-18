@@ -57,7 +57,7 @@ app.use(async (err, req, res, next) => {
       await req.session.save()
       res.redirect("/")
     } else {
-      res.render(err)
+      res.send(err)
     }
   }
   next()
