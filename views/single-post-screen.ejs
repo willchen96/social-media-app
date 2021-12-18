@@ -17,7 +17,7 @@
       
     <p class="text-muted small mb-4">
       <a href="/profile/<%= post.author.username %>"><img class="avatar-tiny" src="<%= post.author.avatar %>"></a>
-      Posted by <a href="/profile/<%= post.author.username %>"><%= post.author.username %> </a>on <%= post.date.toISOString().split('T')[0].replaceAll("-", "/") %></p>
+      Posted by <a href="/profile/<%= post.author.username %>"><%= post.author.username %> </a>on <%= post.date.getMonth() + 1 %>/<%= post.date.getDate() %>/<%= post.date.getFullYear() %></p>
 
     <div class="body-content">
       <p><%- filterUserHTML(post.body) %></p>
