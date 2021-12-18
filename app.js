@@ -50,18 +50,18 @@ app.use((req, res, next) => {
   next()
 })
 app.use("/", router)
-app.use(async (err, req, res, next) => {
-  if (err) {
-    if (err.code == "EBADCSRFTOKEN") {
-      req.flash("errors", "Cross site request forgery detected.")
-      await req.session.save()
-      res.redirect("/")
-    } else {
-      res.send(err)
-    }
-  }
-  next()
-})
+// app.use(async (err, req, res, next) => {
+//   if (err) {
+//     if (err.code == "EBADCSRFTOKEN") {
+//       req.flash("errors", "Cross site request forgery detected.")
+//       await req.session.save()
+//       res.redirect("/")
+//     } else {
+//       res.send(err)
+//     }
+//   }
+//   next()
+// })
 
 
 const server = require('http').createServer(app)
