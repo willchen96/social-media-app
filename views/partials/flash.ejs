@@ -1,0 +1,17 @@
+<% errors.forEach(message=> { %>
+    <div class="alert alert-danger text-center">
+        <%= message %>
+        <button type="button" class="close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+<% }); %>
+
+<% success.forEach(message=> { %>
+    <div class="alert alert-success text-center">
+        <%= message %>
+        <button type="button" class="close" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+    </div>
+<% }); %>

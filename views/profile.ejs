@@ -1,0 +1,51 @@
+<%- include('./partials/header') %>
+  
+  <div class="container py-md-5 container--narrow">
+    <%- include('./partials/flash') %>
+    <h2 class="profile-header"><img class="avatar-small" src="<%= userProfile.avatar %>"> <%= userProfile.username %>   
+      <% if (user && !isVisitorsProfile) { %> 
+        <% if (!visitorIsFollowing) { %> 
+          <form class="ml-2 d-inline" action="/follow/<%= userProfile.username %>" method="POST">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button class="btn btn-primary btn-sm">Follow <i class="fas fa-userProfile-plus"></i></button>
+          </form>
+        <% } else { %>
+          <form class="ml-2 d-inline" action="/unfollow/<%= userProfile.username %>" method="POST">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button class="btn btn-danger btn-sm">Unfollow<i class="fas fa-userProfile-times"></i></button>
+          </form>
+      <% }} %> 
+    </h2>
+    <div class="profile-nav nav nav-tabs pt-2 mb-4">
+      <a href="#" class="profile-nav-link nav-item nav-link profile-link__posts active">Posts: <%= posts.length %></a>
+      <a href="#" class="profile-nav-link nav-item nav-link profile-link__followers">Followers: <%= followers.length %></a>
+      <a href="#" class="profile-nav-link nav-item nav-link profile-link__following">Following: <%= following.length %></a>
+    </div>
+    <div class="list-group profile-screen-list">
+      <div class="profile-list__posts">
+        <% posts.forEach(post => { %> 
+          <a href="/post/<%= post._id %> " class="list-group-item list-group-item-action">
+            <img class="avatar-tiny" src="<%= post.author.avatar %> ">
+            <strong><%= post.title %></strong> on <%= post.date.toISOString().split('T')[0].replaceAll("-", "/") %>
+           </a> 
+        <% }) %> 
+      </div>
+      <div class="profile-list__followers d-none">
+        <% followers.forEach(follower => { %> 
+          <a href="/profile/<%= follower.username %>" class="list-group-item list-group-item-action">
+            <img class="avatar-tiny" src="<%= follower.avatar %>"> <%= follower.username %>
+          </a>
+        <% }) %> 
+      </div>
+      <div class="profile-list__following d-none">
+        <% following.forEach(followingUser => { %> 
+          <a href="/profile/<%= followingUser.username %>" class="list-group-item list-group-item-action">
+            <img class="avatar-tiny" src="<%= followingUser.avatar %>"> <%= followingUser.username %>
+          </a>
+        <% }) %> 
+      </div>
+    </div>
+  </div>
+
+  <%- include('./partials/footer') %>
+  
