@@ -26,7 +26,7 @@ exports.viewSingle = (req, res) => {
             res.render('single-post-screen', { post , title: post.title})
         })
         .catch((e) => {
-            res.render('404')
+            res.render(e)
         })
 }
 
