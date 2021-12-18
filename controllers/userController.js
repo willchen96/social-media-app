@@ -101,7 +101,7 @@ exports.profileScreen = async (req, res) => {
     }
     const follow = new Follow(req.userDoc.username, req.visitorId)
     const visitorIsFollowing = await follow.exists()
-    res.render('profile', { userProfile, posts, followers, following, isVisitorsProfile, visitorIsFollowing, title: userProfile.username })
+    res.render("profile", { userProfile, posts, followers, following, isVisitorsProfile, visitorIsFollowing, title: userProfile.username })
 }
 
 exports.apiLogin = (req, res) => {
