@@ -26,7 +26,7 @@ exports.viewSingle = (req, res) => {
             try{
                 res.render('single-post-screen', { post , title: post.title})
             } catch (e){
-                res.send(e)
+                res.send("Something went wrong:" + e)
             }
             
         })
